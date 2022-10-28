@@ -1,19 +1,21 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Notify;
 
 use Illuminate\Container\Container;
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
-use Illuminate\Foundation\Application as LaravelApplication;
 
 class NotifyServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -21,8 +23,6 @@ class NotifyServiceProvider extends ServiceProvider
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('notify.php')], 'config');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('notify');
         }
 
         $this->mergeConfigFrom($source, 'notify');
@@ -32,16 +32,9 @@ class NotifyServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
-        if ($this->app instanceof LumenApplication) {
-            $this->app->register(\Illuminate\Session\SessionServiceProvider::class);
-            $this->app->configure('session');
-        }
-
         $this->registerNotify();
     }
 

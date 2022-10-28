@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Notify;
 
 use RuntimeException;
@@ -7,11 +12,6 @@ use Yoeunes\Notify\Notifiers\NotifierInterface;
 
 class NotifierFactory
 {
-    /**
-     * @param array $config
-     *
-     * @return NotifierInterface
-     */
     public static function make(array $config): NotifierInterface
     {
         $driver = $config['default'];

@@ -1,18 +1,23 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Notify\Notifiers;
 
 use function basename;
 
 abstract class AbstractNotifier
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $config;
 
     /**
      * Toastr constructor.
-     *
-     * @param array $config
      */
     public function __construct(array $config)
     {
@@ -21,10 +26,6 @@ abstract class AbstractNotifier
 
     /**
      * Render the notifications' script tag.
-     *
-     * @param array $notifications
-     *
-     * @return string
      */
     public function render(array $notifications): string
     {
@@ -33,19 +34,12 @@ abstract class AbstractNotifier
 
     /**
      * Get global toastr options.
-     *
-     * @return string
      */
     public function options(): string
     {
         return '';
     }
 
-    /**
-     * @param array $notifications
-     *
-     * @return string
-     */
     public function notificationsAsString(array $notifications): string
     {
         return implode('', $this->notifications($notifications));
@@ -53,10 +47,6 @@ abstract class AbstractNotifier
 
     /**
      * map over all notifications and create an array of toastrs.
-     *
-     * @param array $notifications
-     *
-     * @return array
      */
     public function notifications(array $notifications): array
     {
@@ -71,30 +61,21 @@ abstract class AbstractNotifier
     /**
      * Create a single notification.
      *
-     * @param string $type
-     * @param string $message
-     * @param string|null $title
-     * @param string|null $options
-     *
-     * @return string
+     * @param null|string $title
+     * @param null|string $options
      */
     abstract public function notify(string $type, string $message = '', string $title = '', string $options = ''): string;
 
     /**
-     * Get Allowed Types
-     *
-     * @return array
+     * Get Allowed Types.
      */
     public function getAllowedTypes(): array
     {
         return $this->config['types'];
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
-        return basename(\get_class($this));
+        return basename(static::class);
     }
 }

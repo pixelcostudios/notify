@@ -1,10 +1,14 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Notify;
 
 use Illuminate\Config\Repository;
 use Illuminate\Session\SessionManager;
-use function in_array;
 use RuntimeException;
 use Yoeunes\Notify\Notifiers\NotifierInterface;
 
@@ -19,7 +23,7 @@ use Yoeunes\Notify\Notifiers\NotifierInterface;
  */
 class Notify
 {
-    const NOTIFICATIONS_NAMESPACE = 'notify::notifications';
+    public const NOTIFICATIONS_NAMESPACE = 'notify::notifications';
 
     /**
      * Added notifications.
@@ -42,15 +46,13 @@ class Notify
      */
     protected $config;
 
-    /** @var NotifyInterface */
+    /**
+     * @var NotifyInterface
+     */
     protected $notifier;
 
     /**
      * Notification constructor.
-     *
-     * @param NotifierInterface $notifier
-     * @param SessionManager $session
-     * @param Repository $config
      */
     public function __construct(NotifierInterface $notifier, SessionManager $session, Repository $config)
     {
@@ -63,25 +65,31 @@ class Notify
         $this->notifications = $this->session->get(self::NOTIFICATIONS_NAMESPACE, []);
     }
 
+    public function __call($method, $arguments)
+    {
+        if (!\in_array($method, $this->notifier->getAllowedTypes(), true)) {
+            throw new RuntimeException('Invalid type "'.$method.'" for the "'.$this->notifier->getName().'"');
+        }
+
+        $this->addNotification($method, ...$arguments);
+    }
+
     /**
      * Add a notification.
      *
-     * @param string $type    Could be error, info, success, or warning.
+     * @param string $type    could be error, info, success, or warning
      * @param string $message The notification's message
      * @param string $title   The notification's title
-     * @param array $options
-     *
-     * @return self
      */
     public function addNotification(string $type, string $message, string $title = '', array $options = []): self
     {
-        if (!in_array($type, $this->notifier->getAllowedTypes(), true)) {
+        if (!\in_array($type, $this->notifier->getAllowedTypes(), true)) {
             throw new RuntimeException('Invalid type "'.$type.'" for the "'.$this->notifier->getName().'"');
         }
 
         $this->notifications[] = [
-            'type'    => $type,
-            'title'   => $this->escapeSingleQuote($title),
+            'type' => $type,
+            'title' => $this->escapeSingleQuote($title),
             'message' => $this->escapeSingleQuote($message),
             'options' => json_encode($options),
         ];
@@ -92,21 +100,7 @@ class Notify
     }
 
     /**
-     * helper function to escape single quote for example for french words.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    private function escapeSingleQuote(string $value): string
-    {
-        return str_replace("'", "\\'", $value);
-    }
-
-    /**
      * Render the notifications' script tag.
-     *
-     * @return string
      */
     public function render(): string
     {
@@ -119,8 +113,6 @@ class Notify
 
     /**
      * Clear all notifications.
-     *
-     * @return self
      */
     public function clear(): self
     {
@@ -132,15 +124,10 @@ class Notify
     }
 
     /**
-     * @param $method
-     * @param $arguments
+     * helper function to escape single quote for example for french words.
      */
-    public function __call($method, $arguments)
+    private function escapeSingleQuote(string $value): string
     {
-        if (!in_array($method, $this->notifier->getAllowedTypes(), true)) {
-            throw new RuntimeException('Invalid type "'.$method.'" for the "'.$this->notifier->getName().'"');
-        }
-
-        $this->addNotification($method, ...$arguments);
+        return str_replace("'", "\\'", $value);
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
-return [
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
 
+return [
     'default' => 'toastr',
 
     'toastr' => [
-
         'class' => \Yoeunes\Notify\Notifiers\Toastr::class,
 
         'notify_js' => [
@@ -28,7 +31,6 @@ return [
     ],
 
     'pnotify' => [
-
         'class' => \Yoeunes\Notify\Notifiers\Pnotify::class,
 
         'notify_js' => [
@@ -53,7 +55,6 @@ return [
     ],
 
     'sweetalert2' => [
-
         'class' => \Yoeunes\Notify\Notifiers\SweetAlert2::class,
 
         'notify_js' => [

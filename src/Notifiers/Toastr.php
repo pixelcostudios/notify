@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * This file is part of the yoeunes/notify package.
+ * (c) Younes KHOUBZA <younes.khoubza@gmail.com>
+ */
+
 namespace Yoeunes\Notify\Notifiers;
 
 class Toastr extends AbstractNotifier implements NotifierInterface
 {
     /**
      * Get global toastr options.
-     *
-     * @return string
      */
     public function options(): string
     {
@@ -17,15 +20,11 @@ class Toastr extends AbstractNotifier implements NotifierInterface
     /**
      * Create a single notification.
      *
-     * @param string      $type
-     * @param string      $message
-     * @param string|null $title
-     * @param string|null $options
-     *
-     * @return string
+     * @param null|string $title
+     * @param null|string $options
      */
     public function notify(string $type, string $message = '', string $title = '', string $options = ''): string
     {
-        return "toastr.$type('$message', '$title', $options);";
+        return "toastr.{$type}('{$message}', '{$title}', {$options});";
     }
 }

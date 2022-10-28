@@ -1,19 +1,10 @@
-<h1 align="center">Notify notification package for Laravel and Lumen</h1>
+<h1 align="center">Notify notification package for Laravel</h1>
 
-> I'm working on a more advanced and more flexible solution for Laravel and Symfony, that include more drivers like : Tailwindcss, bootstrap, Noty, Sweet ALert, Notyf and Pnotify
-
-> I'm currently documenting all parts, but if you have time go check it here : https://php-flasher.github.io/
-> <p align="center"><img width="600" alt="flasher" src="https://user-images.githubusercontent.com/10859693/102468596-03317180-4052-11eb-9df3-44dc6235b238.png"></p>
-
-<p align="center">:eyes: This package helps you to add notifications to your Laravel 5 and Lumen projects.</p>
+<p align="center">:eyes: This package helps you to add notifications to your Laravel projects.</p>
 
 <p align="center">
-    <a href="https://travis-ci.org/yoeunes/notify"><img src="https://travis-ci.org/yoeunes/notify.svg?branch=master" alt="Build Status"></a>
     <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/v/stable" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/v/unstable" alt="Latest Unstable Version"></a>
-    <a href="https://scrutinizer-ci.com/g/yoeunes/notify/build-status/master"><img src="https://scrutinizer-ci.com/g/yoeunes/notify/badges/build.png?b=master" alt="Build Status"></a>
-    <a href="https://scrutinizer-ci.com/g/yoeunes/notify/?branch=master"><img src="https://scrutinizer-ci.com/g/yoeunes/notify/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
-    <a href="https://scrutinizer-ci.com/g/yoeunes/notify/?branch=master"><img src="https://scrutinizer-ci.com/g/yoeunes/notify/badges/coverage.png?b=master" alt="Code Coverage"></a>
     <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/downloads" alt="Total Downloads"></a>
     <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/license" alt="License"></a>
 </p>
@@ -27,29 +18,6 @@ You can install the package using composer
 ```sh
 $ composer require yoeunes/notify
 ```
-
-Then add the service provider to `config/app.php`. In Laravel versions 5.5 and beyond, this step can be skipped if package auto-discovery is enabled.
-
-```php
-'providers' => [
-    ...
-    Yoeunes\Notify\NotifyServiceProvider::class
-    ...
-];
-```
-
-As optional if you want to modify the default configuration, you can publish the configuration file:
- 
-```sh
-$ php artisan vendor:publish --provider='Yoeunes\Notify\NotifyServiceProvider' --tag="config"
-```
-
-### For Lumen :
-
-1. In `bootstrap/app.php` 
-    * uncomment `$app->withFacades();`
-    * add bindings for ToastrServiceProvider : `$app->register(Yoeunes\Notify\NotifyServiceProvider::class);` 
-2. Add `config/session.php`, since it is not present in `Lumen` by default. You can take `session.php` from [Laravel Official Repository](https://github.com/laravel/laravel/blob/master/config/session.php)
 
 ## Usage:
 
@@ -133,6 +101,26 @@ notify()->alert('We do have the Kapua suite available.', 'Turtle Bay Resort', ['
 // You can also chain multiple messages together using method chaining
 ```php
 notify()->info('Are you the 6 fingered man?')->success('Have fun storming the castle!')->warning('doritos');
+```
+
+### Service Provider Laravel version < 5.5:
+
+In Laravel versions 5.5 and beyond, this step can be skipped if package auto-discovery is enabled
+
+Add the service provider to `config/app.php`. .
+
+```php
+'providers' => [
+    ...
+    Yoeunes\Notify\NotifyServiceProvider::class
+    ...
+];
+```
+
+As optional if you want to modify the default configuration, you can publish the configuration file:
+ 
+```sh
+$ php artisan vendor:publish --provider='Yoeunes\Notify\NotifyServiceProvider' --tag="config"
 ```
 
 ### configuration:
