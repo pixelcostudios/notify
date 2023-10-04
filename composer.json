@@ -1,8 +1,8 @@
 {
-    "name": "yoeunes/notify",
+    "name": "pixelcostudios/notify",
     "license": "MIT",
     "description": "toastr.js, pnotify.js flush notifications for Laravel",
-    "homepage": "https://github.com/yoeunes/notify",
+    "homepage": "https://github.com/pixelcostudios/notify",
     "keywords": [
         "toastr",
         "pnotify",
@@ -32,9 +32,9 @@
     ],
     "authors": [
         {
-            "name": "Younes Khoubza",
-            "email": "younes.khoubza@gmail.com",
-            "homepage": "https://github.com/yoeunes/notify",
+            "name": "Gleen Ferdinand",
+            "email": "info@pixelcostudios.com",
+            "homepage": "https://github.com/pixelcostudios/notify",
             "role": "Developer"
         }
     ],
