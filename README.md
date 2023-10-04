@@ -16,7 +16,7 @@
 You can install the package using composer
 
 ```sh
-$ composer require yoeunes/notify
+$ composer require pixelcostudios/notify
 ```
 
 ## Usage:
