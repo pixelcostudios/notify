@@ -1,13 +1,6 @@
-<h1 align="center">Notify notification package for Laravel</h1>
+<h1 align="center">Notify notification package support Laravel 10</h1>
 
 <p align="center">:eyes: This package helps you to add notifications to your Laravel projects.</p>
-
-<p align="center">
-    <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/v/stable" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/v/unstable" alt="Latest Unstable Version"></a>
-    <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/downloads" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/yoeunes/notify"><img src="https://poser.pugx.org/yoeunes/notify/license" alt="License"></a>
-</p>
 
 <p align="center"><img width="300" alt="notify" src="https://user-images.githubusercontent.com/10859693/39634578-1a9f121a-4fb3-11e8-8863-d64fad42901b.png"></p>
 
